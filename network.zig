@@ -2,17 +2,17 @@ const std = @import("std");
 const builtin = @import("builtin");
 
 comptime {
-    std.debug.assert(@sizeOf(std.os.sockaddr) >= @sizeOf(std.os.sockaddr.in));
+    std.debug.assert(@sizeOf(std.os.sockaddr) >= @sizeOf(std.os.sockaddr));
     // std.debug.assert(@sizeOf(std.os.sockaddr) >= @sizeOf(std.os.sockaddr.in6));
 }
 
-const is_windows = builtin.os.tag == .windows;
-const is_darwin = builtin.os.tag.isDarwin();
-const is_linux = builtin.os.tag == .linux;
-const is_freebsd = builtin.os.tag == .freebsd;
-const is_openbsd = builtin.os.tag == .openbsd;
-const is_netbsd = builtin.os.tag == .netbsd;
-const is_dragonfly = builtin.os.tag == .dragonfly;
+const is_windows = @import("builtin").os.tag == .windows;
+const is_darwin = @import("builtin").os.tag.isDarwin();
+const is_linux = @import("builtin").os.tag == .linux;
+const is_freebsd = @import("builtin").os.tag == .freebsd;
+const is_openbsd = @import("builtin").os.tag == .openbsd;
+const is_netbsd = @import("builtin").os.tag == .netbsd;
+const is_dragonfly = @import("builtin").os.tag == .dragonfly;
 
 // use these to test collections of OS type
 const is_bsd = is_darwin or is_freebsd or is_openbsd or is_netbsd or is_dragonfly;
